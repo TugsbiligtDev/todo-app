@@ -22,15 +22,35 @@ const App = () => {
       text: inputValue,
       status: "active",
     };
-    setData([...data, newTask]);
-    setFilteredData([...data, newTask]);
+    const updatedData = [...data, newTask];
+    setData(updatedData);
+
+    if (filter === "active") {
+      setFilteredData(updatedData.filter((task) => task.status === "active"));
+    } else if (filter === "completed") {
+      setFilteredData(
+        updatedData.filter((task) => task.status === "completed")
+      );
+    } else {
+      setFilteredData(updatedData);
+    }
+
     setInputValue("");
   };
 
   const deleteTask = (id) => {
-    const filteredData = data.filter((task) => task.id !== id);
-    setData(filteredData);
-    setFilteredData(filteredData);
+    const updatedData = data.filter((task) => task.id !== id);
+    setData(updatedData);
+
+    if (filter === "active") {
+      setFilteredData(updatedData.filter((task) => task.status === "active"));
+    } else if (filter === "completed") {
+      setFilteredData(
+        updatedData.filter((task) => task.status === "completed")
+      );
+    } else {
+      setFilteredData(updatedData);
+    }
   };
 
   const toggleStatus = (id) => {
@@ -44,7 +64,16 @@ const App = () => {
       return task;
     });
     setData(changedData);
-    setFilteredData(changedData);
+
+    if (filter === "active") {
+      setFilteredData(changedData.filter((task) => task.status === "active"));
+    } else if (filter === "completed") {
+      setFilteredData(
+        changedData.filter((task) => task.status === "completed")
+      );
+    } else {
+      setFilteredData(changedData);
+    }
   };
 
   const clearCompleted = () => {
@@ -71,7 +100,7 @@ const App = () => {
   };
   return (
     <div className="flex justify-center w-screen h-screen font-inter">
-      <div className="w-[377px] bg-white mt-[60px] flex flex-col gap-5 py-6 px-4 rounded-md shadow-md size-fit">
+      <div className="w-[95%] max-w-[377px] bg-white mt-[60px] flex flex-col gap-5 py-6 px-4 rounded-md shadow-md size-fit">
         <h1 className="text-xl font-semibold leading-none text-center">
           To-Do list
         </h1>
@@ -114,6 +143,7 @@ const App = () => {
         {filteredData.map((task) => {
           return (
             <Task
+              key={task.id}
               {...task}
               toggleStatus={toggleStatus}
               deleteTask={deleteTask}
