@@ -1,22 +1,19 @@
 const Task = ({ text, status, id, toggleStatus, deleteTask }) => {
-  const idDone = status === "active" ? false : true;
+  const isDone = status === "active" ? false : true;
   return (
-    <div
-      key={id}
-      className=" w-full h-[62px] bg-[#F9FAFB] flex justify-between items-center p-4 rounded-md"
-    >
-      <div className="flex gap-[10px]">
+    <div className="w-full h-[62px] bg-[#F9FAFB] flex justify-between items-center p-4 rounded-md">
+      <div className="flex gap-[10px] items-center">
         <input
           type="checkbox"
           className="w-5 h-5 border-[#FFFFFF] bg-[#0275FF] outline-hidden"
-          checked={idDone}
+          checked={isDone}
           onChange={() => {
             toggleStatus(id);
           }}
         />
         <p
           className={`text-sm text-center ${
-            status === "completed" ? "line-through  " : ""
+            status === "completed" ? "line-through" : ""
           }`}
         >
           {text}

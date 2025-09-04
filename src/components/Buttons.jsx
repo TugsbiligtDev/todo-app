@@ -1,4 +1,4 @@
-const Buttons = ({ text, handleClick, isSmall, isActive }) => {
+const Buttons = ({ text, handleClick, isSmall, isActive, type = "button" }) => {
   let baseStyle = isSmall ? "h-[42px] px-3 py-1 text-sm" : "h-[40px] px-4 py-2";
 
   let colorStyle;
@@ -13,7 +13,8 @@ const Buttons = ({ text, handleClick, isSmall, isActive }) => {
 
   return (
     <button
-      onClick={handleClick}
+      type={type}
+      onClick={type === "submit" ? undefined : handleClick}
       className={`${baseStyle} ${colorStyle} rounded-md`}
     >
       {text}
