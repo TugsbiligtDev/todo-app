@@ -5,16 +5,14 @@ const Task = ({ text, status, id, toggleStatus, deleteTask }) => {
       <div className="flex gap-[10px] items-center">
         <input
           type="checkbox"
-          className="w-5 h-5 border-[#FFFFFF] bg-[#0275FF] outline-hidden"
+          className="w-5 h-5 border-[#FFFFFF] bg-[#0275FF] outline-none"
           checked={isDone}
           onChange={() => {
             toggleStatus(id);
           }}
         />
         <p
-          className={`text-sm text-center ${
-            status === "completed" ? "line-through" : ""
-          }`}
+          className={`text-sm ${status === "completed" ? "line-through" : ""}`}
         >
           {text}
         </p>

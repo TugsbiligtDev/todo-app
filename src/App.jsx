@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Buttons from "./components/Buttons.jsx";
-import Task from "./components/Task";
+import Task from "./components/Task.jsx";
 
 const App = () => {
   const [inputValue, setInputValue] = useState("");
@@ -87,8 +87,8 @@ const App = () => {
   };
 
   return (
-    <div className="flex justify-center w-screen h-screen font-inter">
-      <main className="w-[95%] max-w-[377px] bg-white mt-[60px] flex flex-col gap-5 py-6 px-4 rounded-md shadow-md size-fit">
+    <div className="flex justify-center w-screen h-screen">
+      <main className="w-[95%] max-w-[377px] bg-white mt-[60px] flex flex-col gap-5 py-6 px-4 rounded-md shadow-md h-fit">
         <header>
           <h1 className="text-xl font-semibold leading-none text-center">
             To-Do list
@@ -104,14 +104,14 @@ const App = () => {
               value={inputValue}
               type="text"
               placeholder="Add a new task..."
-              className="w-[280px] h-[40px] rounded-md border border-[#E4E4E7] px-4 py-2 text-sm outline-hidden"
+              className="w-[280px] h-[40px] rounded-md border border-[#E4E4E7] px-4 py-2 text-sm outline-none"
             />
             <Buttons type="submit" text="Add" />
           </form>
         </section>
 
         <section>
-          <div className="flex gap-[6px] flex-start h-[32px]" role="tablist">
+          <div className="flex gap-[6px] items-start h-[32px]" role="tablist">
             <Buttons
               isSmall={true}
               text="All"
