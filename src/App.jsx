@@ -87,8 +87,8 @@ const App = () => {
   };
 
   return (
-    <div className="flex justify-center w-screen h-screen animate-fadeIn">
-      <main className="w-[95%] max-w-[377px] bg-white mt-[60px] flex flex-col gap-5 py-6 px-4 rounded-md shadow-md h-fit animate-slideUp">
+    <div className="flex justify-center w-screen h-screen animate-pulse">
+      <main className="w-[95%] max-w-[377px] bg-white mt-[60px] flex flex-col gap-5 py-6 px-4 rounded-md shadow-md h-fit animate-bounce">
         <header>
           <h1 className="text-xl font-semibold leading-none text-center">
             To-Do list
@@ -134,13 +134,9 @@ const App = () => {
         </section>
 
         <section>
-          {filteredData.map((task, index) => {
+          {filteredData.map((task) => {
             return (
-              <div
-                key={task.id}
-                className="animate-fadeInUp"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
+              <div key={task.id} className="animate-ping">
                 <Task
                   {...task}
                   toggleStatus={toggleStatus}
