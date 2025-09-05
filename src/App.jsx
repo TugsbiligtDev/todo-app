@@ -87,8 +87,8 @@ const App = () => {
   };
 
   return (
-    <div className="flex justify-center w-screen h-screen">
-      <main className="w-[95%] max-w-[377px] bg-white mt-[60px] flex flex-col gap-5 py-6 px-4 rounded-md shadow-md h-fit">
+    <div className="flex justify-center w-screen h-screen animate-fadeIn">
+      <main className="w-[95%] max-w-[377px] bg-white mt-[60px] flex flex-col gap-5 py-6 px-4 rounded-md shadow-md h-fit animate-slideUp">
         <header>
           <h1 className="text-xl font-semibold leading-none text-center">
             To-Do list
@@ -104,7 +104,7 @@ const App = () => {
               value={inputValue}
               type="text"
               placeholder="Add a new task..."
-              className="w-[280px] h-[40px] rounded-md border border-[#E4E4E7] px-4 py-2 text-sm outline-none"
+              className="w-[280px] h-[40px] rounded-md border border-[#E4E4E7] px-4 py-2 text-sm outline-none transition-all duration-200 ease-in-out focus:border-[#3C82F6] focus:ring-2 focus:ring-[#3C82F6] focus:ring-opacity-20"
             />
             <Buttons type="submit" text="Add" />
           </form>
@@ -134,14 +134,19 @@ const App = () => {
         </section>
 
         <section>
-          {filteredData.map((task) => {
+          {filteredData.map((task, index) => {
             return (
-              <Task
+              <div
                 key={task.id}
-                {...task}
-                toggleStatus={toggleStatus}
-                deleteTask={deleteTask}
-              />
+                className="animate-fadeInUp"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <Task
+                  {...task}
+                  toggleStatus={toggleStatus}
+                  deleteTask={deleteTask}
+                />
+              </div>
             );
           })}
 
